@@ -1,0 +1,24 @@
+<script>
+function log(text) {
+  document.querySelector("#log").innerText += (text + "\n");
+}
+
+function logDevices() {
+  navigator.mediaDevices.enumerateDevices().then(
+    function(devices) {
+      devices.forEach(
+        function(device) {
+          log(device.kind + ": " + device.label + " id = " + device.deviceId);
+        }
+      );
+    }
+  ).catch(
+    function(err) {
+      log(err.name + ": " + err.message);
+    }
+  );
+}
+</script>
+<body onload="logDevices()">
+<pre id="log"></pre>
+</body>
